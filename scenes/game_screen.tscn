@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://mq7ytg81a7ri"]
+
+[ext_resource type="Texture2D" uid="uid://djw3xxso6rpyv" path="res://assets/room.jpeg" id="1_ltgdq"]
+[ext_resource type="PackedScene" uid="uid://cs8byd3a2fa87" path="res://scenes/plant_jar.tscn" id="2_au7le"]
+
+[node name="game_screen" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ltgdq")
+
+[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
+rotation = 0.22632
+
+[node name="plant_jar" parent="." instance=ExtResource("2_au7le")]
+position = Vector2(-110, 133)
