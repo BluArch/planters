@@ -6,7 +6,7 @@ var is_inside_dropable = false
 var prev_location: Vector2
 var offset: Vector2
 
-func _process(delta):
+func _process(_delta):
 	# If mouse is hovering over object
 	if draggable:
 		# When left button on mouse is clicked while hovering, grab object
