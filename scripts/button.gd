@@ -7,4 +7,3 @@ func _on_pressed():
 	instance.position.x = 150
 	instance.position.y = 400
 	add_child(instance)
-	print("spawned!")

@@ -1,5 +1,7 @@
 extends Node2D
 
+var grown_plant_texture = preload("res://assets/big.png")
+
 var draggable = false
 var is_inside_dropable = false
 
@@ -53,3 +55,7 @@ func _on_area_2d_body_exited(body:StaticBody2D):
 	# Update that object is no longer in a drop zone
 	if body.is_in_group("drop_zone"):
 		is_inside_dropable = false
+
+
+func _on_timer_timeout():
+	$Sprite2D.set_texture(grown_plant_texture)
