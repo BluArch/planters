@@ -1,12 +1,22 @@
 extends Node2D
 
-var grown_plant_texture = preload("res://assets/big.png")
+const MAX_PLANT_HEALTH = 30
 
+var grown_plant_texture = preload("res://assets/big.png")
+var small_plant_texture = preload("res://assets/bud.png")
+
+var alive = true
+
+var cur_plant_health = MAX_PLANT_HEALTH
 var draggable = false
 var is_inside_dropable = false
 
 var prev_location: Vector2
 var offset: Vector2
+
+func _ready():
+	var healthbar = $Sprite2D/plant_health
+	healthbar.value = MAX_PLANT_HEALTH
 
 func _process(_delta):
 	# If mouse is hovering over object
@@ -29,7 +39,7 @@ func _process(_delta):
 	# Update previous location if not done already
 	elif (global_position!= prev_location):
 		prev_location = global_position
-		
+	
 	
 func _on_area_2d_mouse_entered():
 	# Update draggable that mouse is hovering over object, and little animation to show it is hovered
@@ -56,6 +66,17 @@ func _on_area_2d_body_exited(body:StaticBody2D):
 	if body.is_in_group("drop_zone"):
 		is_inside_dropable = false
 
-
-func _on_timer_timeout():
+func update_health():
+	var healthbar = $Sprite2D/plant_health
+	healthbar.value = cur_plant_health
+	
+	if cur_plant_health==0:
+		alive=false
+	
+func _on_growth_timer_timeout():
 	$Sprite2D.set_texture(grown_plant_texture)
+	
+func _on_water_timer_timeout():
+	if cur_plant_health!=0:
+		cur_plant_health = cur_plant_health - 1
+	update_health()

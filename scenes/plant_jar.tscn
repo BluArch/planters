@@ -22,10 +22,30 @@ scale = Vector2(10, 10)
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_0ggb1")
 
-[node name="Timer" type="Timer" parent="Sprite2D"]
+[node name="growth_timer" type="Timer" parent="Sprite2D"]
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="water_timer" type="Timer" parent="Sprite2D"]
+autostart = true
+
+[node name="plant_health" type="ProgressBar" parent="Sprite2D"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 1.123
+anchor_bottom = 0.701
+offset_left = -1910.0
+offset_top = -1720.0
+offset_right = -1920.28
+offset_bottom = -1719.64
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 30.0
+step = 1.0
+rounded = true
+show_percentage = false
 
 [connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]
@@ -33,4 +53,6 @@ autostart = true
 [connection signal="input_event" from="Sprite2D/Area2D" to="Sprite2D/Area2D/CollisionShape2D" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_mouse_exited"]
-[connection signal="timeout" from="Sprite2D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Sprite2D/growth_timer" to="." method="_on_growth_timer_timeout"]
+[connection signal="timeout" from="Sprite2D/growth_timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Sprite2D/water_timer" to="." method="_on_water_timer_timeout"]
