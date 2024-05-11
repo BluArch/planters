@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var plant_health = $Sprite2D/plant_health
+
 const MAX_PLANT_HEALTH = 30
 
 var grown_plant_texture = preload("res://assets/big.png")
@@ -59,13 +61,15 @@ func _on_area_2d_body_entered(body:StaticBody2D):
 	# Update that object is in a drop zone
 	if body.is_in_group("drop_zone"):
 		is_inside_dropable = true
+		
 
 
 func _on_area_2d_body_exited(body:StaticBody2D):
 	# Update that object is no longer in a drop zone
 	if body.is_in_group("drop_zone"):
 		is_inside_dropable = false
-
+		
+		
 func update_health():
 	var healthbar = $Sprite2D/plant_health
 	healthbar.value = cur_plant_health
