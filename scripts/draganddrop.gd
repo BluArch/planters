@@ -8,6 +8,7 @@ var grown_plant_texture = preload("res://assets/big.png")
 var small_plant_texture = preload("res://assets/bud.png")
 
 var alive = true
+var watering_plant = false
 
 var cur_plant_health = MAX_PLANT_HEALTH
 var draggable = false
@@ -62,25 +63,39 @@ func _on_area_2d_body_entered(body:StaticBody2D):
 	if body.is_in_group("drop_zone"):
 		is_inside_dropable = true
 		
-
-
 func _on_area_2d_body_exited(body:StaticBody2D):
 	# Update that object is no longer in a drop zone
 	if body.is_in_group("drop_zone"):
 		is_inside_dropable = false
-		
+
 		
 func update_health():
+	if cur_plant_health<=0:
+		cur_plant_health = 0
+		alive = false
+	elif cur_plant_health > MAX_PLANT_HEALTH:
+		cur_plant_health == MAX_PLANT_HEALTH
+		
 	var healthbar = $Sprite2D/plant_health
 	healthbar.value = cur_plant_health
-	
-	if cur_plant_health==0:
-		alive=false
 	
 func _on_growth_timer_timeout():
 	$Sprite2D.set_texture(grown_plant_texture)
 	
 func _on_water_timer_timeout():
-	if cur_plant_health!=0:
-		cur_plant_health = cur_plant_health - 1
+	if watering_plant == false:
+		if cur_plant_health!=0:
+			cur_plant_health = cur_plant_health - 1
+	else:
+		cur_plant_health = cur_plant_health + 1
 	update_health()
+	
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("water"):
+		print("watering")
+		watering_plant = true
+		
+func _on_area_2d_area_exited(area):
+	if area.is_in_group("water"):
+		print("done watering")
+		watering_plant = false

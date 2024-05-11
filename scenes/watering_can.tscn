@@ -19,13 +19,16 @@ scale = Vector2(0.075, 0.075)
 texture = ExtResource("1_q1gkr")
 
 [node name="water" type="Sprite2D" parent="can"]
+visible = false
 position = Vector2(144, 280)
 texture = ExtResource("2_k2cwq")
 
-[node name="Area2D" type="Area2D" parent="can/water"]
+[node name="Area2D" type="Area2D" parent="can/water" groups=["water"]]
+position = Vector2(642.667, 680)
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="can/water/Area2D" groups=["water"]]
-position = Vector2(642.667, 666.667)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="can/water/Area2D"]
+position = Vector2(-0.000152588, -3.05176e-05)
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_hw2uu")
 

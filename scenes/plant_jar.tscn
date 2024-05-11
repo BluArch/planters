@@ -19,7 +19,7 @@ position = Vector2(0, 120)
 scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
-position = Vector2(0, 1)
+position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_0ggb1")
 
 [node name="growth_timer" type="Timer" parent="Sprite2D"]
@@ -29,8 +29,6 @@ autostart = true
 
 [node name="water_timer" type="Timer" parent="Sprite2D"]
 autostart = true
-
-[node name="getting_watered" type="Timer" parent="Sprite2D"]
 
 [node name="plant_health" type="ProgressBar" parent="Sprite2D"]
 anchors_preset = -1
@@ -50,6 +48,7 @@ rounded = true
 show_percentage = false
 
 [connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="input_event" from="Sprite2D/Area2D" to="." method="_on_area_2d_input_event"]

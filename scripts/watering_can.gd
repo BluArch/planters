@@ -5,6 +5,7 @@ var draggable = false
 var prev_location: Vector2
 var offset: Vector2
 
+
 func _process(_delta):
 	# If mouse is hovering over object
 	if draggable:
@@ -17,9 +18,12 @@ func _process(_delta):
 			# Turning water on and off
 			if Input.is_action_just_pressed("right_mouse_click"):
 				$can/water.visible = true
+				$can/water/Area2D.monitorable = true
 				$can.set_rotation_degrees(30)
+				
 			elif Input.is_action_just_released("right_mouse_click"):
 				$can/water.visible = false
+				$can/water/Area2D.monitorable = false
 				$can.set_rotation_degrees(0)
 				
 		elif Input.is_action_just_released("left_mouse_click"):
