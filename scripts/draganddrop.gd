@@ -80,7 +80,7 @@ func update_health():
 	healthbar.value = cur_plant_health
 	
 func _on_growth_timer_timeout():
-	$plant_pot.set_texture(grown_plant_texture)
+	$plant.set_texture(grown_plant_texture)
 	
 func _on_water_timer_timeout():
 	if watering_plant == false:
