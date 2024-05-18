@@ -1,11 +1,11 @@
 extends Node2D
 
-@onready var plant_health = $Sprite2D/plant_health
+@onready var plant_health = $plant_pot/plant_health
 
 const MAX_PLANT_HEALTH = 30
 
-var grown_plant_texture = preload("res://assets/big.png")
-var small_plant_texture = preload("res://assets/bud.png")
+var grown_plant_texture = preload("res://assets/grown_cactus.png")
+var small_plant_texture = preload("res://assets/bud_cactus.png")
 
 var alive = true
 var watering_plant = false
@@ -18,7 +18,7 @@ var prev_location: Vector2
 var offset: Vector2
 
 func _ready():
-	var healthbar = $Sprite2D/plant_health
+	var healthbar = $plant_pot/plant_health
 	healthbar.value = MAX_PLANT_HEALTH
 
 func _process(_delta):
@@ -76,11 +76,11 @@ func update_health():
 	elif cur_plant_health > MAX_PLANT_HEALTH:
 		cur_plant_health == MAX_PLANT_HEALTH
 		
-	var healthbar = $Sprite2D/plant_health
+	var healthbar = $plant_pot/plant_health
 	healthbar.value = cur_plant_health
 	
 func _on_growth_timer_timeout():
-	$Sprite2D.set_texture(grown_plant_texture)
+	$plant_pot.set_texture(grown_plant_texture)
 	
 func _on_water_timer_timeout():
 	if watering_plant == false:
