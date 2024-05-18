@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://mq7ytg81a7ri"]
 
-[ext_resource type="Texture2D" uid="uid://djw3xxso6rpyv" path="res://assets/room.jpeg" id="1_ltgdq"]
+[ext_resource type="Texture2D" uid="uid://cp1xhoglhah2s" path="res://assets/updated_room.jpeg" id="1_e3nng"]
 [ext_resource type="PackedScene" uid="uid://btuysi563f1bn" path="res://scenes/drop_zone.tscn" id="3_guhnx"]
 [ext_resource type="Script" path="res://scripts/button.gd" id="4_31phr"]
 [ext_resource type="PackedScene" uid="uid://lv2i1wr4iv3n" path="res://scenes/watering_can.tscn" id="4_iv1dv"]
@@ -9,7 +9,7 @@
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_ltgdq")
+texture = ExtResource("1_e3nng")
 
 [node name="Camera2D" type="Camera2D" parent="Sprite2D"]
 rotation = 0.22632
@@ -26,6 +26,7 @@ offset_right = 56.0
 offset_bottom = -222.0
 text = "Spawn plant"
 script = ExtResource("4_31phr")
+metadata/_edit_use_anchors_ = true
 
 [node name="watering_can" parent="." instance=ExtResource("4_iv1dv")]
 position = Vector2(-380, -74)
