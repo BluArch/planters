@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs8byd3a2fa87"]
+[gd_scene load_steps=6 format=3 uid="uid://cs8byd3a2fa87"]
 
 [ext_resource type="Texture2D" uid="uid://bauhkmploqpd" path="res://assets/brown_plant_pot.png" id="2_chx76"]
 [ext_resource type="Script" path="res://scripts/draganddrop.gd" id="2_r8c8b"]
-[ext_resource type="Texture2D" uid="uid://uvdb461jx5c4" path="res://assets/monstera_large.png" id="3_sfjxj"]
+[ext_resource type="Texture2D" uid="uid://cfuesvxdlggks" path="res://assets/bud_cactus.png" id="3_mhgt1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0ggb1"]
-radius = 30.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvgax"]
+size = Vector2(61.5, 34.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gvedb"]
+radius = 300.042
 
 [node name="plant_jar" type="Node2D"]
 script = ExtResource("2_r8c8b")
 
 [node name="plant_pot" type="Sprite2D" parent="."]
 position = Vector2(0, -54)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_chx76")
 
 [node name="Area2D" type="Area2D" parent="plant_pot"]
@@ -20,8 +23,8 @@ position = Vector2(0, 120)
 scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plant_pot/Area2D"]
-position = Vector2(-6, 29)
-shape = SubResource("CircleShape2D_0ggb1")
+position = Vector2(-7.25, 39.75)
+shape = SubResource("RectangleShape2D_vvgax")
 
 [node name="growth_timer" type="Timer" parent="plant_pot"]
 wait_time = 5.0
@@ -49,9 +52,15 @@ rounded = true
 show_percentage = false
 
 [node name="plant" type="Sprite2D" parent="."]
-position = Vector2(-9.53674e-07, -54)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_sfjxj")
+position = Vector2(7.10543e-15, -53)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_mhgt1")
+
+[node name="watering_area" type="Area2D" parent="plant"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plant/watering_area"]
+position = Vector2(-65, 100)
+shape = SubResource("CircleShape2D_gvedb")
 
 [connection signal="area_entered" from="plant_pot/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="plant_pot/Area2D" to="." method="_on_area_2d_area_exited"]
@@ -61,6 +70,8 @@ texture = ExtResource("3_sfjxj")
 [connection signal="input_event" from="plant_pot/Area2D" to="plant_pot/Area2D/CollisionShape2D" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="plant_pot/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="plant_pot/Area2D" to="." method="_on_area_2d_mouse_exited"]
-[connection signal="timeout" from="plant_pot/growth_timer" to="." method="_on_growth_timer_timeout"]
 [connection signal="timeout" from="plant_pot/growth_timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="plant_pot/growth_timer" to="." method="_on_growth_timer_timeout"]
 [connection signal="timeout" from="plant_pot/water_timer" to="." method="_on_water_timer_timeout"]
+[connection signal="area_entered" from="plant/watering_area" to="." method="_on_watering_area_area_entered"]
+[connection signal="area_exited" from="plant/watering_area" to="." method="_on_watering_area_area_exited"]

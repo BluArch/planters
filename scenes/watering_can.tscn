@@ -15,7 +15,7 @@ script = ExtResource("1_2j63a")
 
 [node name="can" type="Sprite2D" parent="."]
 position = Vector2(5, 12)
-scale = Vector2(0.075, 0.075)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_q1gkr")
 
 [node name="water" type="Sprite2D" parent="can"]

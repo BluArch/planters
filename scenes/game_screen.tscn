@@ -1,34 +1,54 @@
 [gd_scene load_steps=5 format=3 uid="uid://mq7ytg81a7ri"]
 
-[ext_resource type="Texture2D" uid="uid://cp1xhoglhah2s" path="res://assets/updated_room.jpeg" id="1_e3nng"]
+[ext_resource type="Texture2D" uid="uid://wwryteupsuau" path="res://assets/backdrop.png" id="1_oy63d"]
 [ext_resource type="PackedScene" uid="uid://btuysi563f1bn" path="res://scenes/drop_zone.tscn" id="3_guhnx"]
-[ext_resource type="Script" path="res://scripts/button.gd" id="4_31phr"]
 [ext_resource type="PackedScene" uid="uid://lv2i1wr4iv3n" path="res://scenes/watering_can.tscn" id="4_iv1dv"]
+[ext_resource type="Script" path="res://scenes/button.gd" id="4_mv6u8"]
 
 [node name="game_screen" type="Node2D"]
+position = Vector2(2, -549)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_e3nng")
+position = Vector2(1, 0)
+texture = ExtResource("1_oy63d")
 
 [node name="Camera2D" type="Camera2D" parent="Sprite2D"]
 rotation = 0.22632
+zoom = Vector2(0.6, 0.6)
 
-[node name="drop_zone" parent="." instance=ExtResource("3_guhnx")]
-position = Vector2(1.52588e-05, 137)
-scale = Vector2(30, 5)
-skew = 1.07512
+[node name="drop_zone1" parent="." instance=ExtResource("3_guhnx")]
+position = Vector2(-741, -36)
+scale = Vector2(30, 8)
+skew = -0.862193
 
-[node name="Button" type="Button" parent="."]
-offset_left = -54.0
-offset_top = -253.0
-offset_right = 56.0
-offset_bottom = -222.0
-text = "Spawn plant"
-script = ExtResource("4_31phr")
-metadata/_edit_use_anchors_ = true
+[node name="drop_zone2" parent="." instance=ExtResource("3_guhnx")]
+position = Vector2(-724, -362)
+scale = Vector2(18, 2.9)
+skew = -1.00182
+
+[node name="drop_zone3" parent="." instance=ExtResource("3_guhnx")]
+position = Vector2(761, -220)
+scale = Vector2(30, 6)
+skew = 0.760964
+
+[node name="drop_zone4" parent="." instance=ExtResource("3_guhnx")]
+position = Vector2(727, 9)
+scale = Vector2(30, 7)
+skew = 0.970403
+
+[node name="drop_zone5" parent="." instance=ExtResource("3_guhnx")]
+position = Vector2(-3.55271e-15, 178)
+scale = Vector2(96, 5.5)
 
 [node name="watering_can" parent="." instance=ExtResource("4_iv1dv")]
-position = Vector2(-380, -74)
+position = Vector2(-640, 314)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 389.0
+offset_top = 321.0
+offset_right = 851.0
+offset_bottom = 472.0
+text = "BUY PLANT"
+script = ExtResource("4_mv6u8")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

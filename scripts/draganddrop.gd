@@ -4,8 +4,14 @@ extends Node2D
 
 const MAX_PLANT_HEALTH = 30
 
-var grown_plant_texture = preload("res://assets/grown_cactus.png")
-var small_plant_texture = preload("res://assets/bud_cactus.png")
+var grown_plant_texture
+var small_plant_texture
+
+var plant_dict = {"cactus": {"small_plant_texture" : preload("res://assets/bud_cactus.png"), 
+							 "grown_plant_texture" : preload("res://assets/grown_cactus.png")},
+				  "monstera": {"small_plant_texture" : preload("res://assets/monstera_small.png"), 
+							 "grown_plant_texture" : preload("res://assets/monstera_medium.png")}
+				 }
 
 var alive = true
 var watering_plant = false
@@ -90,12 +96,18 @@ func _on_water_timer_timeout():
 		cur_plant_health = cur_plant_health + 1
 	update_health()
 	
-func _on_area_2d_area_entered(area):
+func _on_watering_area_area_entered(area):
 	if area.is_in_group("water"):
 		print("watering")
 		watering_plant = true
-		
-func _on_area_2d_area_exited(area):
+
+
+func _on_watering_area_area_exited(area):
 	if area.is_in_group("water"):
 		print("done watering")
 		watering_plant = false
+		
+
+func set_plant_type(plant_type:String):
+	grown_plant_texture = plant_dict[plant_type]["small_plant_texture"]
+	small_plant_texture = plant_dict[plant_type]["grown_plant_texture"]
