@@ -109,5 +109,6 @@ func _on_watering_area_area_exited(area):
 		
 
 func set_plant_type(plant_type:String):
-	grown_plant_texture = plant_dict[plant_type]["small_plant_texture"]
-	small_plant_texture = plant_dict[plant_type]["grown_plant_texture"]
+	$plant.texture = plant_dict[plant_type]["small_plant_texture"]
+	small_plant_texture = plant_dict[plant_type]["small_plant_texture"]
+	grown_plant_texture = plant_dict[plant_type]["grown_plant_texture"]
